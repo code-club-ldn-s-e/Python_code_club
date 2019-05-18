@@ -11,9 +11,11 @@ pop_global= pd.read_csv("population.csv")
 pop_fr = pop_global.loc[pop_global['Country Name'] == 'France']
 pop_fr_clean = pop_fr.loc[:, '1970':'2018']
 
-print(pop_fr_clean)
+pop_fr_clean_t = pop_fr_clean.transpose()
+pop_fr_clean_t.columns = ['Population']
+pop_fr_clean_t.plot()
 #print(deaths_by_year_france.head())
 
 
-deaths_by_year_france.plot(x = 'iyear')
-#plt.show()
+#deaths_by_year_france.plot(x = 'iyear')
+plt.show()
