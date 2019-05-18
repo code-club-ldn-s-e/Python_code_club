@@ -3,9 +3,17 @@ import matplotlib.pyplot as plt
 # Read data from file 'filename.csv' 
 # (in the same directory that your python process is based)
 # Control delimiters, rows, column names with read_csv (see later) 
-data = pd.read_csv("eu_terrorism_fatalities_by_country.csv") 
+deaths_by_year = pd.read_csv("eu_terrorism_fatalities_by_country.csv") 
+deaths_by_year_france = deaths_by_year[['iyear', 'France']]
 
-data = data[['iyear', 'France']]
-#print(data.head())
-data.plot(x='iyear', y='France')
-plt.show()
+pop_global= pd.read_csv("population.csv")
+#pop_global.set_index('Country Name',inplace=True)
+pop_fr = pop_global.loc[pop_global['Country Name'] == 'France']
+pop_fr_clean = pop_fr.loc[:, '1970':'2018']
+
+print(pop_fr_clean)
+#print(deaths_by_year_france.head())
+
+
+deaths_by_year_france.plot(x = 'iyear')
+#plt.show()
