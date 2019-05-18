@@ -13,9 +13,20 @@ pop_fr_clean = pop_fr.loc[:, '1970':'2018']
 
 pop_fr_clean_t = pop_fr_clean.transpose()
 pop_fr_clean_t.columns = ['Population']
-pop_fr_clean_t.plot()
-#print(deaths_by_year_france.head())
 
+deaths_pop = pd.concat([pop_fr_clean_t, deaths_by_year_france], sort=True)
+print(deaths_pop.head())
+
+fig = plt.figure()
+
+# Divide the figure into a 2x1 grid, and give me the first section
+ax1 = fig.add_subplot(211)
+
+# Divide the figure into a 2x1 grid, and give me the second section
+ax2 = fig.add_subplot(212)
+
+deaths_by_year_france.plot(x='iyear', ax=ax1)
+pop_fr_clean_t.plot(ax=ax2)
 
 #deaths_by_year_france.plot(x = 'iyear')
 plt.show()
